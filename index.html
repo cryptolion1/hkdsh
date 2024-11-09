@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <title>KING YT Site</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: black;
+        }
+        video.background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
+        }
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .welcome-image {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+            outline: none;
+            border: none;
+        }
+        .container {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            z-index: 5;
+        }
+        .username-box, .points-display {
+             background-color: transparent;
+            color: red;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            position: absolute;
+        }
+      
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            position: absolute;
+             left: 1%;
+            bottom: 10px;
+            width: 100%;
+            z-index: 5;
+        }
+        .button {
+            padding: 8px;
+            background-color: transparent;
+            border-radius: 50%;
+            text-align: center;
+            width: 50px;
+            margin: 0 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+        }
+        .button img {
+            width: 60px;
+            height: 50px;
+            border-radius: 50%;
+            margin-top: 5px;
+            border: none;
+        }
+        .button:hover {
+            background-color: darkgray;
+        }
+        .rectangular-button {
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            top: 50%;  /* لضبط الزر في منتصف الشاشة */
+            left: 45%; /* لضبط الزر في منتصف الشاشة */
+            transform: translate(-50%, -50%); /* لضمان أن الزر في المنتصف تمامًا */
+            width: 80px;
+            height: 80px;
+            top: 65%;
+            border-radius: 50%; /* جعل الزر دائري */
+            cursor: pointer;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+            z-index: 10;
+            padding: 0;
+        }
+        .rectangular-button img {
+            width: 120px; /* جعل الصورة تغطي الزر بالكامل */
+            height: 120px;
+            border-radius: 50%; /* جعل الصورة دائرية */
+        }
+        .rectangular-button:hover {
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted class="background">
+        <source src="بعد الخيره.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="welcome-modal" id="welcome-modal">
+        <img src="لتلتال.jpg" alt="Coin" class="welcome-image">
+        <h2 class="welcome-message">WELCOME TO KING YT</h2>
+    </div>
+    <div class="container" id="main-container">
+   
+        <div class="rectangular-button" onclick="window.location.href='https://king90.socpanel.com'">
+            <img src="زرار الاحالت.jpg" alt="Go to Site">
+        </div>
+        <div class="button-row">
+            <div class="button" onclick="openTelegram()">
+                <img src="تليجرام اسود احا.jpg" alt="Telegram">
+            </div>
+            <div class="button" onclick="openYouTube()">
+                <img src="حسين عادل.jpg" alt="YouTube">
+            </div>
+            <div class="button" onclick="openX()">
+                <img src="تويترننن.png" alt="X">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let coins = 0;
+        let username = '';
+        let hasRegistered = false;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const storedCoins = localStorage.getItem('coins');
+            const storedUsername = localStorage.getItem('username');
+
+            if (storedCoins) {
+                coins = parseInt(storedCoins);
+                document.getElementById('user-coins').innerText = coins + " Points";
+            }
+
+            if (storedUsername) {
+                username = storedUsername;
+                document.getElementById('username').innerText = username;
+                hasRegistered = true;
+                document.getElementById('main-container').style.display = 'block';
+            }
+
+            setTimeout(() => {
+                closeWelcomeModal();
+            }, 3000);
+        });
+
+        function closeWelcomeModal() {
+            const modal = document.getElementById('welcome-modal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 1000); 
+        }
+
+        function openTelegram() {
+            window.open('https://t.me/sokayna2022', '_blank');
+        }
+
+        function openYouTube() {
+            window.open('https://youtube.com/@kingyoutube-2024?si=Kt5XKB4z3mBbBvsD', '_blank');
+        }
+
+        function openX() {
+            window.open('https://x.com/KrbtYwsf17613', '_blank');
+        }
+    </script>
+</body>
+</html>
